@@ -30,9 +30,16 @@ pipeline{
                 echo "Integration Test"
             }
         }
-    }post {
+    }
+    post {
         always{
             echo 'Im awesome. I run always'
+        }
+        success {
+            echo 'everything is ok.'
+        }
+        failure {
+            echo 'Something is wrong.'
         }
     }
 }
