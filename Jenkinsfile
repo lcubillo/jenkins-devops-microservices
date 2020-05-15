@@ -60,15 +60,19 @@ pipeline{
         }
         stage ('Build docker image'){
             //"docker build -t in28min/currency-exchange-devops:$env.BUILD_TAG"
-            script{
-                dockerImage = docker.build("lcubillo/currency-exchange-devops:${env.BUILD_TAG}")
+            steps{
+                script{
+                    dockerImage = docker.build("lcubillo/currency-exchange-devops:${env.BUILD_TAG}")
+                }
             }
         }
         stage ('Push docker image'){
-            script{
-                docker.withRegistry('','dockerhub'){
-                    dockerImage.push()
-                    dockerImage.push('latest')
+            steps{
+                script{
+                    docker.withRegistry('','dockerhub'){
+                        dockerImage.push()
+                        dockerImage.push('latest')
+                    }
                 }
             }
         }
