@@ -29,6 +29,7 @@ pipeline{
             steps{
                 sh 'mvn --version'
                 sh 'docker version'
+                sh 'mvn clean install'
                 echo "Build"
                 echo "PATH = $PATH"
                 echo "build_number = $env.BUILD_NUMBER"
